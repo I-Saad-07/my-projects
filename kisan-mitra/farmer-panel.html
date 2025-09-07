@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer Dashboard - Kisan Mitra</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .sidebar {
+            background-color: #28a745;
+            color: white;
+            min-height: 100vh;
+        }
+        .sidebar .nav-link {
+            color: white;
+            margin: 5px 0;
+        }
+        .sidebar .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .sidebar .nav-link.active {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        .weather-card, .market-card, .schemes-card {
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        /* Weather Widget Styles */
+        .weather-icon {
+            width: 50px;
+            height: 50px;
+            margin: 5px 0;
+        }
+        .alert-success {
+            background-color: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 10px;
+        }
+        .fa-temperature-high, .fa-tint, .fa-wind {
+            color: #28a745;
+            width: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success p-0">
+        <div class="container-fluid">
+          <a class="navbar-brand d-flex align-items-center" href="#">
+            <img src="images/kisan_logo.png" alt="Kisan Mitra Logo" width="60" height="60" class="me-2">
+            Kisan Mitra
+        </a>        
+            <div class="d-flex">
+                <span class="navbar-text me-3">Welcome, Farmer!</span>
+                <a href="index.html" class="btn btn-light btn-sm d-flex align-items-center px-2 py-1">
+                  <i class="fas fa-sign-out-alt me-1"></i>
+                  <span>Logout</span>
+                </a>                
+            </div>
+        </div>
+        <div id="google_translate_element"></div>
+    </nav>
+
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3 col-lg-2 sidebar p-3">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">
+                            <i class="fas fa-home me-2"></i>Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#weather-section">
+                            <i class="fas fa-cloud-sun me-2"></i>Weather
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#market-section">
+                            <i class="fas fa-rupee-sign me-2"></i>Market Prices
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#schemes-section">
+                            <i class="fas fa-file-invoice me-2"></i>Govt Schemes
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#soil-section">
+                            <i class="fas fa-seedling me-2"></i>Soil Health
+                        </a>
+                  
+                </ul>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-9 col-lg-10 p-4">
+                <h3><i class="fas fa-home text-success me-2"></i>Dashboard</h3>
+                <hr>
+
+                <!-- Weather Card -->
+                <!-- Weather Card - Replace your existing one with this -->
+<div class="card weather-card" id="weather-section">
+    <div class="card-header bg-success text-white">
+      <i class="fas fa-cloud-sun me-2"></i> Vadgaon Budruk Weather & Farming Advisory
+    </div>
+    <div class="card-body">
+      <!-- Current Weather -->
+      <div class="row mb-4">
+        <div class="col-md-6">
+          <h5><i class="fas fa-map-marker-alt text-success"></i> Current Conditions</h5>
+          <div class="d-flex align-items-center">
+            <img src="https://openweathermap.org/img/wn/01d@2x.png" alt="Sunny" class="weather-icon">
+            <div>
+              <p class="mb-1"><i class="fas fa-temperature-high"></i> <strong>28°C</strong> (Feels like 30°C)</p>
+              <p class="mb-1"><i class="fas fa-tint"></i> Humidity: 65%</p>
+              <p class="mb-1"><i class="fas fa-wind"></i> Wind: 12 km/h NE</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="alert alert-success">
+            <h5><i class="fas fa-seedling"></i> Today's Farming Advice</h5>
+            <p class="mb-1">• Ideal day for wheat irrigation</p>
+            <p class="mb-1">• Apply urea fertilizer before 10 AM</p>
+            <p>• Harvest tomatoes in early morning</p>
+          </div>
+        </div>
+      </div>
+  
+      <!-- 3-Day Forecast -->
+      <h5 class="border-top pt-3"><i class="fas fa-calendar-alt text-success"></i> 3-Day Forecast</h5>
+      <div class="row text-center">
+        <!-- Day 1 -->
+        <div class="col-md-4">
+          <div class="p-2 border rounded bg-light">
+            <strong>Tomorrow</strong>
+            <img src="https://openweathermap.org/img/wn/03d@2x.png" alt="Partly Cloudy" class="img-fluid" style="width:50px">
+            <p class="mb-1">22°C / 34°C</p>
+            <p class="small text-success">
+              <i class="fas fa-tint"></i> 40% RH<br>
+              <i class="fas fa-wind"></i> 8 km/h
+            </p>
+            <p class="small bg-warning p-1 rounded">Morning fog expected</p>
+          </div>
+        </div>
+        
+        <!-- Day 2 -->
+        <div class="col-md-4">
+          <div class="p-2 border rounded bg-light">
+            <strong>Day After</strong>
+            <img src="https://openweathermap.org/img/wn/09d@2x.png" alt="Rain" class="img-fluid" style="width:50px">
+            <p class="mb-1">20°C / 29°C</p>
+            <p class="small text-success">
+              <i class="fas fa-tint"></i> 85% RH<br>
+              <i class="fas fa-wind"></i> 15 km/h
+            </p>
+            <p class="small bg-info text-white p-1 rounded">
+              <i class="fas fa-umbrella"></i> 80% rain chance
+            </p>
+          </div>
+        </div>
+        
+        <!-- Day 3 -->
+        <div class="col-md-4">
+          <div class="p-2 border rounded bg-light">
+            <strong>Next Day</strong>
+            <img src="https://openweathermap.org/img/wn/50d@2x.png" alt="Haze" class="img-fluid" style="width:50px">
+            <p class="mb-1">21°C / 33°C</p>
+            <p class="small text-success">
+              <i class="fas fa-tint"></i> 70% RH<br>
+              <i class="fas fa-wind"></i> 5 km/h
+            </p>
+            <p class="small bg-danger text-white p-1 rounded">
+              <i class="fas fa-smog"></i> Morning haze alert
+            </p>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Farming Advisory -->
+      <div class="mt-3 alert alert-warning">
+        <h5><i class="fas fa-exclamation-triangle"></i> Seasonal Advisory</h5>
+        <p class="mb-1">• <strong>Monsoon Prep:</strong> Clear drainage channels before rains</p>
+        <p class="mb-1">• <strong>Pest Alert:</strong> Increase in whitefly sightings - spray neem oil</p>
+        <p>• <strong>Sowing Window:</strong> Optimal soybean planting starts next week</p>
+      </div>
+    </div>
+  </div>
+                <!-- Market Prices Card -->
+                 <!-- Market Prices Card -->
+<div class="card market-card" id="market-section">
+    <div class="card-header bg-success text-white">
+      <i class="fas fa-rupee-sign me-2"></i>Local Market Prices
+    </div>
+    <div class="card-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Crop</th>
+            <th>Price (₹/kg)</th>
+            <th>Market</th>
+            <th>Change</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Tomato</td>
+            <td>22.00</td>
+            <td>Pune APMC</td>
+            <td class="text-success"><i class="fas fa-arrow-up"></i> +2.00</td>
+          </tr>
+          <tr>
+            <td>Onion</td>
+            <td>18.50</td>
+            <td>Vadgaon Budruk</td>
+            <td class="text-danger"><i class="fas fa-arrow-down"></i> -1.20</td>
+          </tr>
+          <tr>
+            <td>Potato</td>
+            <td>15.75</td>
+            <td>Pune APMC</td>
+            <td class="text-success"><i class="fas fa-arrow-up"></i> +0.50</td>
+          </tr>
+          <tr>
+            <td>Brinjal</td>
+            <td>12.00</td>
+            <td>Vadgaon Budruk</td>
+            <td class="text-success"><i class="fas fa-arrow-up"></i> +1.00</td>
+          </tr>
+          <tr>
+            <td>Wheat</td>
+            <td>21.00</td>
+            <td>Pune APMC</td>
+            <td class="text-muted"><i class="fas fa-minus"></i> No change</td>
+          </tr>
+          <tr>
+            <td>Rice (Basmati)</td>
+            <td>28.50</td>
+            <td>Pune APMC</td>
+            <td class="text-success"><i class="fas fa-arrow-up"></i> +3.00</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="text-muted small mt-2">Prices updated: </p>
+    </div>
+  </div>
+
+                <!-- Govt Schemes Card -->
+                <!-- Government Schemes Card -->
+<div class="card schemes-card" id="schemes-section">
+    <div class="card-header bg-success text-white">
+      <i class="fas fa-file-invoice me-2"></i>Active Government Schemes
+    </div>
+    <div class="card-body">
+      <div class="list-group">
+        <a href="https://pmkisan.gov.in/" target="_blank" class="list-group-item list-group-item-action">
+          <strong>PM-KISAN</strong>
+          <span class="badge bg-success float-end">Active</span>
+          <p class="mb-1">₹6,000/year direct benefit transfer to farmers</p>
+          <small>Eligibility: All landholding farmers</small>
+        </a>
+        
+        <a href="https://soilhealth.dac.gov.in/" target="_blank" class="list-group-item list-group-item-action">
+          <strong>Soil Health Card</strong>
+          <span class="badge bg-success float-end">Active</span>
+          <p class="mb-1">Free soil testing every 3 years</p>
+          <small>Vadgaon Budruk Center: Agri Office, Near Gram Panchayat</small>
+        </a>
+        
+        <a href="https://mahadbt.gov.in/" target="_blank" class="list-group-item list-group-item-action">
+          <strong>Maharashtra Krishi Sanjivani Yojana</strong>
+          <span class="badge bg-primary float-end">New</span>
+          <p class="mb-1">75% subsidy on drip irrigation systems</p>
+          <small>Contact: Pune District Agriculture Officer (020-25654321)</small>
+        </a>
+        
+        <a href="https://pmfby.gov.in/" target="_blank" class="list-group-item list-group-item-action">
+          <strong>PM Fasal Bima Yojana</strong>
+          <span class="badge bg-success float-end">Active</span>
+          <p class="mb-1">Crop insurance at 2% premium for Kharif crops</p>
+          <small>Deadline: 31st July 2025</small>
+        </a>
+        
+        <a href="https://agricoop.nic.in/" target="_blank" class="list-group-item list-group-item-action">
+          <strong>Subsidy on Seeds</strong>
+          <span class="badge bg-warning text-dark float-end">Limited</span>
+          <p class="mb-1">50% subsidy on drought-resistant varieties</p>
+          <small>Available at: Pune Central Agri Depot</small>
+        </a>
+      </div>
+      
+      <div class="mt-3 text-center">
+        <a href="https://pune.gov.in/schemes/" target="_blank" class="btn btn-sm btn-outline-success">
+          <i class="fas fa-external-link-alt"></i> View All Schemes
+        </a>
+        <button class="btn btn-sm btn-success ms-2" onclick="alert('SMS sent with scheme details to registered mobile')">
+          <i class="fas fa-mobile-alt"></i> Get SMS Info
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Soil Health Card - Add this to your farmer-panel.html -->
+<div class="card soil-card mt-4" id="soil-section">
+    <div class="card-header bg-success text-white">
+      <i class="fas fa-seedling me-2"></i> Vadgaon Budruk Soil Health Report
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <!-- Soil Test Results -->
+        <div class="col-md-6">
+          <h5><i class="fas fa-flask text-success"></i> Latest Soil Analysis</h5>
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead class="table-success">
+                <tr>
+                  <th>Parameter</th>
+                  <th>Value</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Soil Type</td>
+                  <td>Black Cotton</td>
+                  <td><span class="badge bg-info">Ideal</span></td>
+                </tr>
+                <tr>
+                  <td>pH Level</td>
+                  <td>7.2</td>
+                  <td><span class="badge bg-success">Optimal</span></td>
+                </tr>
+                <tr>
+                  <td>Organic Carbon</td>
+                  <td>0.52%</td>
+                  <td><span class="badge bg-warning text-dark">Low</span></td>
+                </tr>
+                <tr>
+                  <td>Nitrogen (N)</td>
+                  <td>240 kg/ha</td>
+                  <td><span class="badge bg-danger">Deficient</span></td>
+                </tr>
+                <tr>
+                  <td>Phosphorus (P)</td>
+                  <td>24 kg/ha</td>
+                  <td><span class="badge bg-success">Adequate</span></td>
+                </tr>
+                <tr>
+                  <td>Potassium (K)</td>
+                  <td>180 kg/ha</td>
+                  <td><span class="badge bg-success">Sufficient</span></td>
+                </tr>
+              </tbody>
+            </table>
+            <p class="small text-muted">Last tested: 15 Jan 2025 | Next test due: 15 Jul 2025</p>
+          </div>
+        </div>
+  
+        <!-- Recommendations -->
+        <div class="col-md-6">
+          <h5><i class="fas fa-clipboard-check text-success"></i> Recommended Actions</h5>
+          <div class="alert alert-success">
+            <h6><i class="fas fa-tractor"></i> For Current Season (Kharif):</h6>
+            <ul class="mb-0">
+              <li>Apply 2 bags/ha DAP fertilizer before sowing</li>
+              <li>Add 5 tonnes/ha farmyard manure for organic carbon</li>
+              <li>Use neem-coated urea for better nitrogen efficiency</li>
+            </ul>
+          </div>
+  
+          <div class="alert alert-warning">
+            <h6><i class="fas fa-exclamation-triangle"></i> Special Advisory:</h6>
+            <p>Your soil shows <strong>zinc deficiency symptoms</strong>. Apply:</p>
+            <ol>
+              <li>25 kg/ha zinc sulphate during tillage</li>
+              <li>Foliar spray: 0.5% ZnSO₄ + 0.25% lime at flowering</li>
+            </ol>
+          </div>
+  
+          <div class="text-center mt-3">
+            <button class="btn btn-sm btn-success me-2">
+              <i class="fas fa-download"></i> Download Full Report
+            </button>
+            <button class="btn btn-sm btn-outline-success">
+              <i class="fas fa-calendar-check"></i> Book New Test
+            </button>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Crop-Specific Tips -->
+      <div class="mt-4 border-top pt-3">
+        <h5><i class="fas fa-table text-success"></i> Recommended Crops</h5>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card border-success mb-3">
+              <div class="card-header bg-success text-white py-2">
+                <i class="fas fa-wheat"></i> Best Suited
+              </div>
+              <div class="card-body">
+                <ul class="mb-0">
+                  <li>Soybean</li>
+                  <li>Cotton</li>
+                  <li>Wheat</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card border-warning mb-3">
+              <div class="card-header bg-warning text-dark py-2">
+                <i class="fas fa-info-circle"></i> Moderate Yield
+              </div>
+              <div class="card-body">
+                <ul class="mb-0">
+                  <li>Turmeric</li>
+                  <li>Onion</li>
+                  <li>Maize</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card border-danger mb-3">
+              <div class="card-header bg-danger text-white py-2">
+                <i class="fas fa-times-circle"></i> Not Recommended
+              </div>
+              <div class="card-body">
+                <ul class="mb-0">
+                  <li>Rice</li>
+                  <li>Sugarcane</li>
+                  <li>Banana</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Weather API Script -->
+    <script>
+        // ===== VADGAON BUDKRUK WEATHER =====
+        const API_KEY = "a18e8f1f3c2894465ebb9827637ca1ec";
+        const LAT = 19.076090;
+        const LON = 72.877426;
+
+        function showWeatherLoading() {
+            const display = document.getElementById('weather-display');
+            if (display) {
+                display.innerHTML = `
+                    <div class="text-center py-3">
+                        <div class="spinner-border text-success" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <p>Loading weather for Vadgaon Budruk...</p>
+                    </div>
+                `;
+            }
+        }
+
+        function showWeather(data) {
+            const display = document.getElementById('weather-display');
+            if (!display) return;
+            
+            const iconUrl = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+            
+            display.innerHTML = `
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5><i class="fas fa-map-marker-alt"></i> Vadgaon Budruk, Pune</h5>
+                        <img src="${iconUrl}" alt="Weather icon" class="weather-icon">
+                        <p><i class="fas fa-temperature-high"></i> ${Math.round(data.main.temp)}°C</p>
+                        <p><i class="fas fa-tint"></i> Humidity: ${data.main.humidity}%</p>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="alert alert-success">
+                            <i class="fas fa-info-circle"></i> 
+                            <strong>Today's Advice:</strong> ${getWeatherAdvice(data)}
+                        </div>
+                        <p><i class="fas fa-wind"></i> Wind: ${data.wind.speed} km/h</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        function getWeatherAdvice(data) {
+            if (data.main.temp > 35) return "Hot today! Water crops twice.";
+            if (data.weather[0].main.includes("Rain")) return "Rain expected - no irrigation needed.";
+            return "Normal farming conditions today.";
+        }
+
+        // Start fetching weather when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            showWeatherLoading();
+            
+            fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${LAT}&lon=${LON}&units=metric&appid=${API_KEY}`)
+                .then(response => {
+                    if (!response.ok) throw new Error("Weather data unavailable");
+                    return response.json();
+                })
+                .then(showWeather)
+                .catch(error => {
+                    console.error("Weather Error:", error);
+                    const display = document.getElementById('weather-display');
+                    if (display) {
+                        display.innerHTML = `
+                            <div class="alert alert-warning">
+                                <i class="fas fa-exclamation-triangle"></i> 
+                                Live weather unavailable. Sample data for Vadgaon Budruk:
+                                <p>Temperature: 28°C</p>
+                                <p>Humidity: 65%</p>
+                            </div>
+                        `;
+                    }
+                });
+        });
+    </script>
+
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+      pageLanguage: 'en',
+      includedLanguages: 'en,hi,mr',
+      layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL
+    }, 'google_translate_element');
+  }
+  </script>
+  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  
+</body>
+</html>

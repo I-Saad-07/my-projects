@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Kisan Mitra</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+        body {
+  background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
+              url('https://source.unsplash.com/1200x600/?farm');
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
+
+        .login-card {
+            margin-top: 50px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .btn-login {
+            background-color: #343a40;  /* Dark gray for admin */
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-0">  <!-- Dark theme for admin -->
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-4 d-flex align-items-center" href="#">
+                <img src="images/kisan_logo.png" alt="Kisan Mitra Logo" width="60" height="60" class="me-2">
+                Kisan Mitra
+            </a>
+        </div>
+        <div id="google_translate_element"></div>
+    </nav>
+
+
+
+    <!-- Login Form -->
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card login-card">
+                    <div class="card-header bg-dark text-white">
+                        <h3 class="text-center">Admin Login</h3>
+                    </div>
+                    <div class="card-body">
+                        <form id="adminLoginForm">
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Username</label>
+                                <input type="text" class="form-control" id="username" placeholder="Enter admin username" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" placeholder="Enter password" required>
+                            </div>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-login text-white">Login</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Simple JavaScript to handle form submission -->
+    <script>
+        document.getElementById('adminLoginForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent page reload
+            alert("Admin login simulated! Redirecting to Admin Panel..."); 
+            window.location.href = "admin-panel.html"; // Redirect after "login"
+        });
+    </script>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+          new google.translate.TranslateElement({
+            pageLanguage: 'en',
+            includedLanguages: 'en,hi,mr',
+            layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL
+          }, 'google_translate_element');
+        }
+        </script>
+        <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        
+</body>
+</html>
